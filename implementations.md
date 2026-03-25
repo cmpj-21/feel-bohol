@@ -38,14 +38,14 @@ This document contains the full extracted content from the project presentation:
 - **Minimalist:** Emphasizing readability and visual clarity.
 
 ### Typography
-- **Headings:** [Cormorant Garamond](https://fonts.google.com/specimen/Cormorant+Garamond) (Light 300)
-- **Body/Labels:** [DM Mono](https://fonts.google.com/specimen/DM+Mono) (Light 300)
 
+- **Headings:** [Bree Serif](https://fonts.google.com/specimen/Bree+Serif)
+- **Body/Labels:** [Inter](https://fonts.google.com/specimen/Inter) (Light 300, 400, 500, 600, 700)
 
 **Google Fonts Import:**
 
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=DM+Mono:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@300;400;500;600;700&display=swap');
 ```
 
 ### Color Palette (Dual-Mode Design)
