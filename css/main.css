@@ -1,0 +1,379 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-shadow: rgba(5, 15, 18, 0.72);
+  --copy-color: rgba(255, 255, 255, 0.88);
+  --nav-color: rgba(255, 255, 255, 0.92);
+  --accent: #efb500;
+  --card-radius: 28px;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: "Inter", sans-serif;
+  background: #091317;
+}
+
+body {
+  color: #fff;
+}
+
+a,
+button {
+  font: inherit;
+}
+
+.hero {
+  min-height: 100vh;
+  padding: 1.8rem clamp(1.25rem, 3.5vw, 4.5rem) 2.5rem;
+  background-image:
+    linear-gradient(180deg, rgba(10, 20, 28, 0.4) 0%, rgba(10, 20, 28, 0.12) 18%, rgba(7, 16, 18, 0.4) 100%),
+    linear-gradient(90deg, rgba(5, 13, 16, 0.54) 0%, rgba(5, 13, 16, 0.24) 31%, rgba(5, 13, 16, 0) 61%),
+    url("../images/v202_6.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.site-header {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 3.5rem);
+}
+
+.brand {
+  flex: 0 0 auto;
+}
+
+.brand img {
+  display: block;
+  width: clamp(185px, 14vw, 270px);
+  height: auto;
+}
+
+.site-nav {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1rem, 2.2vw, 2.8rem);
+  padding-right: clamp(0rem, 1.5vw, 2rem);
+}
+
+.site-nav a {
+  position: relative;
+  padding-bottom: 0.55rem;
+  color: var(--nav-color);
+  font-size: clamp(0.92rem, 0.55vw + 0.7rem, 1.12rem);
+  font-weight: 300;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  text-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+.site-nav a.is-active {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.site-nav a.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 3rem;
+  height: 0.16rem;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.hero__body {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.95fr) minmax(480px, 1.1fr);
+  align-items: center;
+  min-height: calc(100vh - 6.5rem);
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.hero__copy {
+  max-width: 44rem;
+  padding-top: clamp(5.2rem, 19vh, 11rem);
+}
+
+.hero__copy h1 {
+  margin: 0;
+  font-family: "Bree Serif", serif;
+  font-size: clamp(4.5rem, 8vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-shadow: 0 20px 40px rgba(0, 0, 0, 0.24);
+}
+
+.hero__description {
+  width: min(42rem, 94%);
+  margin: 1.2rem 0 2.7rem;
+  color: var(--copy-color);
+  font-size: clamp(1rem, 1vw + 0.5rem, 1.55rem);
+  line-height: 1.38;
+  text-wrap: balance;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 13rem;
+  padding: 1.15rem 2.2rem;
+  border-radius: 0.45rem;
+  background: var(--accent);
+  color: #111;
+  font-size: 1.15rem;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.cta-button:hover,
+.cta-button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.24);
+}
+
+.hero__visuals {
+  position: relative;
+  min-height: min(50rem, 74vh);
+}
+
+.hero__controls {
+  position: absolute;
+  top: 34%;
+  right: 0;
+  z-index: 4;
+  display: flex;
+  gap: 0.8rem;
+}
+
+.control {
+  width: 3.7rem;
+  height: 3.7rem;
+  border: 0;
+  border-radius: 50%;
+  background-color: transparent;
+  background-image: url("../images/v6_59.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  opacity: 0.92;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.control--prev {
+  transform: rotate(180deg);
+}
+
+.control:hover,
+.control:focus-visible {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.control--prev:hover,
+.control--prev:focus-visible {
+  transform: rotate(180deg) translateY(2px);
+}
+
+.hero__cards {
+  position: absolute;
+  right: -8rem;
+  bottom: 0.4rem;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 3.4rem;
+}
+
+.destination-card {
+  position: relative;
+  overflow: visible;
+}
+
+.destination-card__image {
+  width: 288px;
+  height: 50vh;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.22);
+}
+
+.destination-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.destination-card--road,
+.destination-card--river,
+.destination-card--tarsier {
+  width: 288px;
+  height: 356px;
+}
+
+.destination-card--road {
+  z-index: 2;
+}
+
+.destination-card--road p {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3.1rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.96);
+  font-size: clamp(1.05rem, 1vw + 0.35rem, 1.95rem);
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+}
+
+.destination-card--river {
+  z-index: 3;
+  margin-left: -1.4rem;
+  transform: translateY(-1.5rem);
+}
+
+.destination-card--tarsier {
+  z-index: 1;
+  margin-left: -0.8rem;
+}
+
+@media (max-width: 1100px) {
+  .hero {
+    padding-bottom: 2rem;
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-nav {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-right: 0;
+  }
+
+  .hero__body {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 2rem;
+  }
+
+  .hero__copy {
+    max-width: 40rem;
+    padding-top: 1rem;
+  }
+
+  .hero__visuals {
+    min-height: 42rem;
+  }
+
+  .hero__controls {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .hero__cards {
+    right: -4rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    padding: 1.25rem 1rem 1.5rem;
+    background-position: 58% center;
+  }
+
+  .brand img {
+    width: 11rem;
+  }
+
+  .site-nav {
+    gap: .9rem 1.2rem;
+  }
+
+  .site-nav a {
+    font-size: 0.88rem;
+  }
+
+  .hero__copy h1 {
+    font-size: clamp(3.1rem, 17vw, 4.7rem);
+  }
+
+  .hero__description {
+    width: 100%;
+    margin-bottom: 1.8rem;
+    font-size: 2rem;
+  }
+
+  .cta-button {
+    min-width: 10.5rem;
+    padding: 0.95rem 1.5rem;
+  }
+
+  .hero__visuals {
+    min-height: auto;
+    padding-top: 5rem;
+  }
+
+  .hero__controls {
+    top: 0;
+    right: 0;
+  }
+
+  .control {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  .hero__cards {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding: 0 0 2.4rem;
+    scrollbar-width: none;
+  }
+
+  .hero__cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .destination-card--road,
+  .destination-card--river,
+  .destination-card--tarsier {
+    flex: 0 0 auto;
+    width: 288px;
+    height: 356px;
+    margin-left: 0;
+    transform: none;
+  }
+
+  .destination-card--road p {
+    font-size: 1rem;
+    bottom: -2rem;
+  }
+}
