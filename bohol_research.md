@@ -4,7 +4,7 @@ This document serves as a comprehensive content guide for the **Feel Bohol** tou
 
 ---
 
-## 🏛️ History & Heritage
+## History & Heritage
 
 ### The Sandugo (Blood Compact)
 - **Origin:** Occurred on March 25, 1565, in Tagbilaran.
@@ -25,7 +25,7 @@ This document serves as a comprehensive content guide for the **Feel Bohol** tou
 
 ---
 
-## ⛰️ Major Attractions & Landmarks (2026 Estimates)
+## Major Attractions & Landmarks (2026 Estimates)
 
 | Attraction | Key Feature | Fee (Estimate) |
 | :--- | :--- | :--- |
@@ -38,7 +38,7 @@ This document serves as a comprehensive content guide for the **Feel Bohol** tou
 
 ---
 
-## 🎒 Traveler's Guide & Logistics
+## Traveler's Guide & Logistics
 
 ### Best Time to Visit
 - **Peak Season (Dec – May):** Best weather, sunny skies, calm seas.
@@ -52,7 +52,7 @@ This document serves as a comprehensive content guide for the **Feel Bohol** tou
 
 ---
 
-## 🍽️ Flavors of Bohol (Local Delicacies)
+## Flavors of Bohol (Local Delicacies)
 
 - **Calamay (Jagna):** A sweet, sticky treat made from glutinous rice and coconut milk, traditionally served in coconut shells.
 - **Peanut Kisses:** Crunchy, hill-shaped cookies that mimic the Chocolate Hills.
@@ -62,7 +62,7 @@ This document serves as a comprehensive content guide for the **Feel Bohol** tou
 
 ---
 
-## ✨ Hidden Gems (For 2026)
+## Hidden Gems (For 2026)
 
 - **Cadapdapan Rice Terraces:** A serene alternative to the more crowded terraces in the north.
 - **Can-umantad Falls:** Bohol's tallest waterfall, located in Candijay.
@@ -72,7 +72,7 @@ This document serves as a comprehensive content guide for the **Feel Bohol** tou
 
 ---
 
-## 📅 Significant Events 2026
+## Significant Events 2026
 - **January:** Ubi Festival.
 - **May:** Fiesta Month (town-wide celebrations).
 - **July 1–27:** Sandugo Festival (Tagbilaran City).
