@@ -28,16 +28,38 @@ button {
 }
 
 .hero {
+  position: relative;
   min-height: 100vh;
   padding: 1.8rem clamp(1.25rem, 3.5vw, 4.5rem) 2.5rem;
-  background-image:
-    linear-gradient(180deg, rgba(10, 20, 28, 0.4) 0%, rgba(10, 20, 28, 0.12) 18%, rgba(7, 16, 18, 0.4) 100%),
-    linear-gradient(90deg, rgba(5, 13, 16, 0.54) 0%, rgba(5, 13, 16, 0.24) 31%, rgba(5, 13, 16, 0) 61%),
-    url("../images/chocolate-hills-aerial.png");
+}
+
+.hero__carousel {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.carousel-slide {
+  position: absolute;
+  inset: 0;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.75s ease;
+}
+
+.carousel-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(180deg, rgba(10, 20, 28, 0.4) 0%, rgba(10, 20, 28, 0.12) 18%, rgba(7, 16, 18, 0.4) 100%),
+    linear-gradient(90deg, rgba(5, 13, 16, 0.54) 0%, rgba(5, 13, 16, 0.24) 31%, rgba(5, 13, 16, 0) 61%);
+}
+
+.carousel-slide.is-active {
+  opacity: 1;
 }
 
 .site-header {
@@ -193,26 +215,40 @@ button {
   transform: rotate(180deg) translateY(2px);
 }
 
+/* --- Card Carousel Track --- */
+
 .hero__cards {
   position: absolute;
-  right: -8rem;
-  bottom: 0.4rem;
+  right: 0;
+  bottom: 2rem;
+  width: min(800px, 85vw);
+  overflow: hidden;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 3%, black 100%);
+}
+
+.hero__card-track {
   display: flex;
-  align-items: flex-end;
-  padding-bottom: 3.4rem;
+  gap: 1rem;
+  will-change: transform;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .destination-card {
+  flex: 0 0 256px;
   position: relative;
-  overflow: visible;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .destination-card__image {
-  width: 288px;
-  height: 50vh;
+  width: 256px;
+  height: 340px;
   overflow: hidden;
-  border-radius: var(--card-radius);
-  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.22);
 }
 
 .destination-card img {
@@ -220,42 +256,74 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
-.destination-card--road,
-.destination-card--river,
-.destination-card--tarsier {
-  width: 288px;
-  height: 356px;
-}
-
-.destination-card--road {
+.destination-card.is-current {
+  transform: translateY(-16px) scale(1.05);
+  box-shadow: 0 44px 88px rgba(0, 0, 0, 0.55);
   z-index: 2;
 }
 
-.destination-card--road p {
+.destination-card.is-current img {
+  transform: scale(1.04);
+}
+
+.destination-card__label {
   position: absolute;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: -3.1rem;
   margin: 0;
-  color: rgba(255, 255, 255, 0.96);
-  font-size: clamp(1.05rem, 1vw + 0.35rem, 1.95rem);
+  padding: 2.4rem 1rem 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, transparent 100%);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: clamp(0.8rem, 0.9vw + 0.3rem, 1rem);
   font-weight: 500;
   text-align: center;
-  text-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+  letter-spacing: 0.03em;
 }
 
-.destination-card--river {
-  z-index: 3;
-  margin-left: -1.4rem;
-  transform: translateY(-1.5rem);
+/* --- Slide Counter --- */
+
+.slide-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-top: 1.6rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.destination-card--tarsier {
-  z-index: 1;
-  margin-left: -0.8rem;
+.slide-counter__current {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
 }
+
+/* --- Nav Enhancement --- */
+
+.site-header {
+  position: fixed;
+  top: 1rem;
+  left: clamp(1.25rem, 3.5vw, 4.5rem);
+  right: clamp(1.25rem, 3.5vw, 4.5rem);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 3.5rem);
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(5, 15, 18, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* --- Responsive --- */
 
 @media (max-width: 1100px) {
   .hero {
@@ -265,6 +333,7 @@ button {
   .site-header {
     flex-direction: column;
     align-items: flex-start;
+    border-radius: 1rem;
   }
 
   .site-nav {
@@ -294,7 +363,8 @@ button {
   }
 
   .hero__cards {
-    right: -4rem;
+    right: 0;
+    width: 100%;
     padding-bottom: 3rem;
   }
 }
@@ -324,7 +394,7 @@ button {
   .hero__description {
     width: 100%;
     margin-bottom: 1.8rem;
-    font-size: 2rem;
+    font-size: 1rem;
   }
 
   .cta-button {
@@ -334,7 +404,7 @@ button {
 
   .hero__visuals {
     min-height: auto;
-    padding-top: 5rem;
+    padding-top: 4rem;
   }
 
   .hero__controls {
@@ -351,29 +421,70 @@ button {
     position: relative;
     right: auto;
     bottom: auto;
-    justify-content: flex-start;
-    gap: 0.75rem;
-    overflow-x: auto;
-    padding: 0 0 2.4rem;
-    scrollbar-width: none;
+    padding-bottom: 2.4rem;
+    width: 100%;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
-  .hero__cards::-webkit-scrollbar {
-    display: none;
+  .destination-card {
+    flex: 0 0 220px;
   }
 
-  .destination-card--road,
-  .destination-card--river,
-  .destination-card--tarsier {
-    flex: 0 0 auto;
-    width: 288px;
-    height: 356px;
-    margin-left: 0;
-    transform: none;
+  .destination-card__image {
+    width: 220px;
+    height: 300px;
   }
 
-  .destination-card--road p {
-    font-size: 1rem;
-    bottom: -2rem;
+  .destination-card.is-current {
+    transform: translateY(-10px) scale(1.03);
   }
+}
+
+/* --- Footer --- */
+
+.site-footer {
+  background: #060e10;
+  padding: 3rem clamp(1.25rem, 3.5vw, 4.5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.site-footer__brand {
+  margin: 0;
+  font-family: "Bree Serif", serif;
+  font-size: 1.6rem;
+  color: var(--accent);
+}
+
+.site-footer__copy {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.82rem;
+  max-width: 42rem;
+}
+
+.site-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1.6rem;
+}
+
+.site-footer__nav a {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-footer__nav a:hover {
+  color: var(--accent);
 }

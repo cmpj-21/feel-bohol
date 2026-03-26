@@ -11,11 +11,17 @@
 </head>
 <body>
   <main class="hero">
+    <div class="hero__carousel" aria-hidden="true">
+      <div class="carousel-slide is-active" style="background-image: url('./images/chocolate-hills-aerial.png')"></div>
+      <div class="carousel-slide" style="background-image: url('./images/manmade-forest-road.png')"></div>
+      <div class="carousel-slide" style="background-image: url('./images/loboc-river-cruise.png')"></div>
+      <div class="carousel-slide" style="background-image: url('./images/tarsier-close-up.png')"></div>
+    </div>
+
     <header class="site-header">
       <a class="brand" href="#" aria-label="Feel Bohol home">
         <img src="./images/bohol-logo.png" alt="Bohol logo">
       </a>
-
       <nav class="site-nav" aria-label="Primary navigation">
         <a class="is-active" href="#">Home</a>
         <a href="#">Destinations</a>
@@ -27,13 +33,17 @@
       </nav>
     </header>
 
-    <section class="hero__body">
+    <section class="hero__body" style="padding-top:5rem;">
       <div class="hero__copy">
         <h1>Feel Bohol</h1>
         <p class="hero__description">
-          This text presents my research journey on the topic of Music and Tourism Imaginaries and gives the context which led to the publication of this special issue of Via Tourism Review.
+          Where ancient limestone hills meet turquoise rivers and rare wildlife. Discover the island that never stops surprising you.
         </p>
         <a class="cta-button" href="#">see more</a>
+        <div class="slide-counter">
+          <span class="slide-counter__current">01</span>
+          <span>&nbsp;/&nbsp;04</span>
+        </div>
       </div>
 
       <div class="hero__visuals">
@@ -43,27 +53,123 @@
         </div>
 
         <div class="hero__cards">
-          <article class="destination-card destination-card--road">
-            <div class="destination-card__image">
-              <img src="./images/manmade-forest-road.png" alt="Forest road in Bohol">
-            </div>
-            <p>Bilar Manmade Forest</p>
-          </article>
-
-          <article class="destination-card destination-card--river">
-            <div class="destination-card__image">
-              <img src="./images/loboc-river-cruise.png" alt="Boat on turquoise river">
-            </div>
-          </article>
-
-          <article class="destination-card destination-card--tarsier">
-            <div class="destination-card__image">
-              <img src="./images/tarsier-close-up.png" alt="Philippine tarsier">
-            </div>
-          </article>
+          <div class="hero__card-track" id="cardTrack">
+            <article class="destination-card is-current">
+              <div class="destination-card__image"><img src="./images/chocolate-hills-aerial.png" alt="Chocolate Hills"></div>
+              <p class="destination-card__label">Chocolate Hills</p>
+            </article>
+            <article class="destination-card">
+              <div class="destination-card__image"><img src="./images/manmade-forest-road.png" alt="Bilar Manmade Forest"></div>
+              <p class="destination-card__label">Bilar Manmade Forest</p>
+            </article>
+            <article class="destination-card">
+              <div class="destination-card__image"><img src="./images/loboc-river-cruise.png" alt="Loboc River"></div>
+              <p class="destination-card__label">Loboc River</p>
+            </article>
+            <article class="destination-card">
+              <div class="destination-card__image"><img src="./images/tarsier-close-up.png" alt="Philippine Tarsier"></div>
+              <p class="destination-card__label">Philippine Tarsier</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Feel Bohol</p>
+      <p class="site-footer__copy">&copy; 2026 Feel Bohol. Promoting the natural beauty and cultural heritage of Bohol, Philippines.</p>
+      <nav class="site-footer__nav" aria-label="Footer navigation">
+        <a href="#">Home</a>
+        <a href="#">Destinations</a>
+        <a href="#">Gallery</a>
+        <a href="#">Plan your Trip</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var n      = 4;
+      var CARD_W = 256;
+      var GAP    = 16;
+      var STEP   = CARD_W + GAP; // 272px
+
+      var slides    = document.querySelectorAll('.carousel-slide');
+      var track     = document.getElementById('cardTrack');
+      var counterEl = document.querySelector('.slide-counter__current');
+      var btnPrev   = document.querySelector('.control--prev');
+      var btnNext   = document.querySelector('.control--next');
+
+      var current = 0;
+      var locked  = false;
+      var timer;
+
+      function moveTo(pos, animate) {
+        track.style.transition = animate
+          ? 'transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)'
+          : 'none';
+        track.style.transform = 'translateX(' + (-pos * STEP) + 'px)';
+      }
+
+      function highlightFirst() {
+        var kids = track.children;
+        for (var i = 0; i < kids.length; i++) {
+          kids[i].classList.toggle('is-current', i === 0);
+        }
+      }
+
+      function updateBg(idx) {
+        slides[current].classList.remove('is-active');
+        current = idx;
+        slides[current].classList.add('is-active');
+        if (counterEl) counterEl.textContent = String(current + 1).padStart(2, '0');
+      }
+
+      function goForward() {
+        if (locked) return;
+        locked = true;
+        updateBg((current + 1) % n);
+        // Mark 2nd card as active during the slide
+        track.children[0].classList.remove('is-current');
+        if (track.children[1]) track.children[1].classList.add('is-current');
+        moveTo(1, true);
+        setTimeout(function () {
+          track.appendChild(track.firstElementChild); // recycle: move spent card to end
+          moveTo(0, false);                           // snap back — invisible
+          locked = false;
+        }, 680);
+      }
+
+      function goBack() {
+        if (locked) return;
+        locked = true;
+        updateBg((current - 1 + n) % n);
+        track.prepend(track.lastElementChild); // bring last card to front
+        highlightFirst();                      // mark it active
+        moveTo(1, false);                      // snap so prepended card is off-screen left
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            moveTo(0, true);                   // animate reveal from left
+            setTimeout(function () { locked = false; }, 680);
+          });
+        });
+      }
+
+      function startAuto() { timer = setInterval(goForward, 4500); }
+      function resetAuto() { clearInterval(timer); startAuto(); }
+
+      btnNext.addEventListener('click', function () { goForward(); resetAuto(); });
+      btnPrev.addEventListener('click', function () { goBack();    resetAuto(); });
+
+      moveTo(0, false);
+      highlightFirst();
+      updateBg(0);
+      startAuto();
+    })();
+  </script>
 </body>
 </html>
