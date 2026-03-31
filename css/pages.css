@@ -381,6 +381,13 @@
   box-shadow: 0 12px 28px rgba(239, 181, 0, 0.3);
 }
 
+.btn-submit:disabled {
+  cursor: progress;
+  opacity: 0.78;
+  transform: none;
+  box-shadow: none;
+}
+
 /* Map iframe */
 .map-wrap {
   margin-top: 2.5rem;
@@ -488,10 +495,313 @@
   line-height: 1.6;
 }
 
+/* Trip planner */
+.weather-note {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.trip-planner-layout,
+.trip-planner-results {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.95fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.trip-planner-form,
+.trip-planner-overview,
+.trip-planner-panel {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
+}
+
+.trip-planner-fields,
+.trip-planner-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.trip-planner-interests {
+  margin: 1.25rem 0 0;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+}
+
+.trip-planner-interests legend {
+  padding: 0 0.45rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.trip-planner-interest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.trip-planner-check {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.82);
+  cursor: pointer;
+}
+
+.trip-planner-check input {
+  accent-color: #efb500;
+}
+
+.trip-planner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.trip-planner-note,
+.trip-planner-summary-text,
+.trip-planner-kpi p,
+.planner-budget-row p,
+.planner-budget-total p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.55;
+}
+
+.trip-planner-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.trip-planner-overview__eyebrow,
+.trip-planner-kpi__label,
+.planner-budget-row__label,
+.planner-day-card__eyebrow {
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.trip-planner-kpi {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.trip-planner-kpi strong {
+  display: block;
+  margin: 0.35rem 0 0.45rem;
+  font-family: "Bree Serif", serif;
+  font-size: 1.25rem;
+}
+
+.trip-planner-alerts {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
+
+.trip-planner-alert {
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.trip-planner-alert p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.trip-planner-alert--info {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.trip-planner-alert--warn {
+  background: rgba(239, 181, 0, 0.1);
+  border-color: rgba(239, 181, 0, 0.28);
+}
+
+.trip-planner-panel {
+  min-height: 100%;
+}
+
+.trip-planner-panel__head {
+  margin-bottom: 1rem;
+}
+
+.trip-planner-panel__title {
+  margin: 0.15rem 0 0;
+  font-family: "Bree Serif", serif;
+  font-size: 1.5rem;
+}
+
+.trip-planner-days-output,
+.trip-planner-budget-output {
+  display: grid;
+  gap: 1rem;
+}
+
+.planner-day-card,
+.planner-budget-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.planner-day-card {
+  padding: 1.2rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.planner-day-card__top,
+.planner-day-card__meta,
+.planner-day-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.planner-day-card__title {
+  margin: 0.3rem 0 0;
+  font-family: "Bree Serif", serif;
+  font-size: 1.3rem;
+}
+
+.planner-day-card__summary,
+.planner-day-card__note {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.planner-day-card__summary {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.planner-day-card__note,
+.planner-day-card__footer {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.planner-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.82rem;
+  text-transform: capitalize;
+}
+
+.planner-stop-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.planner-stop {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 0.9rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.planner-stop__time {
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.planner-stop__copy strong {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.planner-stop__copy p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.55;
+}
+
+.planner-budget-row,
+.planner-budget-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.planner-budget-row {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.planner-budget-row__copy {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.planner-budget-total {
+  padding: 1.1rem 1.2rem;
+  border-radius: 1rem;
+  background: rgba(239, 181, 0, 0.12);
+  border: 1px solid rgba(239, 181, 0, 0.22);
+}
+
+.planner-budget-total span,
+.planner-budget-total strong {
+  display: block;
+}
+
+.planner-empty {
+  padding: 1.2rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+}
+
 /* Page nav (reuse shared header) */
 /* The fixed .site-header from main.css applies — just include main.css */
 
 @media (max-width: 760px) {
+  .trip-planner-layout,
+  .trip-planner-results,
+  .trip-planner-fields,
+  .trip-planner-kpis,
+  .trip-planner-interest-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .planner-stop {
+    grid-template-columns: 1fr;
+  }
+
   .card-grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: 1fr 1fr; }
   .section { padding: 3rem 1rem; }

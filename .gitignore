@@ -4,3 +4,7 @@ desktop.ini
 .vscode
 *.pdf
 videos/
+
+# Environment variables (API keys)
+.env
+assistant/.env

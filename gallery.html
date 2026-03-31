@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="./images/bohol-logo.png">
   <meta name="description" content="Browse the Feel Bohol photo gallery — Chocolate Hills, tarsiers, river cruises, beaches, and more.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,7 +11,9 @@
   <link href="./css/main.css" rel="stylesheet">
   <link href="./css/pages.css" rel="stylesheet">
   <link href="./css/enhancements.css" rel="stylesheet">
+  <link href="./css/chat.css" rel="stylesheet">
   <script src="./js/main.js" defer></script>
+  <script src="./js/chat.js" defer></script>
   <title>Gallery – Feel Bohol</title>
 </head>
 
@@ -50,11 +53,27 @@
 
 
   <div class="page-wrap">
-    <div class="page-hero">
-      <p class="page-hero__label">Gallery</p>
-      <h1 class="page-hero__title">Bohol in Every Frame</h1>
-      <p class="page-hero__sub">Scroll through the landscapes, wildlife, and culture that make Bohol unforgettable.</p>
-    </div>
+    <section class="section immersive-video-section immersive-video-section--with-copy" aria-label="Bohol gallery banner">
+      <div class="video-container" style="pointer-events: none;">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="none"
+          poster="./images/chocolate-hills-aerial.png"
+          data-sources="./videos/bohol-drone-overview.mp4, ./videos/bohol-drone-overview.f137.mp4"
+        >
+          <source type="video/mp4">
+        </video>
+      </div>
+
+      <div class="immersive-video-copy">
+        <span class="section__label">Gallery</span>
+        <h1 class="section__title">Bohol in Every Frame</h1>
+        <p class="section__body">Scroll through the landscapes, wildlife, and culture that make Bohol unforgettable.</p>
+      </div>
+    </section>
 
     <section class="section">
       <span class="section__label">Landscapes</span>
@@ -156,26 +175,6 @@
       </div>
     </section>
 
-    <section class="section immersive-video-section immersive-video-section--with-copy" aria-label="Bohol from Above">
-      <div class="video-container" style="pointer-events: none;">
-        <video
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="none"
-          poster="./images/chocolate-hills-aerial.png"
-          data-sources="./videos/bohol-drone-overview.mp4, ./videos/bohol-drone-overview.f137.mp4"
-        >
-          <source type="video/mp4">
-        </video>
-      </div>
-
-      <div class="immersive-video-copy">
-        <span class="section__label">Drone Views</span>
-        <h2 class="section__title">Bohol from Above</h2>
-      </div>
-    </section>
   </div>
 
   <footer class="site-footer">

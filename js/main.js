@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const isTripPlannerPage = document.body.dataset.page === 'trip-planner';
   // --- 1. Dark Mode Toggle ---
   const toggleBtn = document.getElementById('theme-toggle');
   let currentTheme = localStorage.getItem('theme') || 'dark';
@@ -487,7 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const localTemp = document.getElementById('local-temp');
   const localStatus = document.getElementById('local-status');
 
-  if (localTemp && localStatus) {
+  if (!isTripPlannerPage && localTemp && localStatus) {
     setTimeout(() => {
       localTemp.textContent = '76°F / 24°C';
       localStatus.innerHTML = 'Sunny <span class="weather-icon">☀️</span>';
