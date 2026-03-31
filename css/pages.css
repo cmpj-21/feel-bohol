@@ -7,38 +7,48 @@
 .page-wrap {
   position: relative;
   min-height: 100vh;
-  color: #fff;
+  color: var(--text-main);
   font-family: "Inter", sans-serif;
   padding-top: 5.5rem; /* clear fixed nav */
-  background: rgba(9, 19, 23, 0.4);
+  background: transparent;
   z-index: 1;
 }
+
 
 .page-wrap::before {
   content: "";
   position: fixed;
   inset: -2rem; /* bleed edges so blur doesn't show sharp box */
   background: url('../images/chocolate-hills-aerial.png') center/cover no-repeat;
-  filter: blur(12px) brightness(0.25);
+  filter: blur(14px) brightness(var(--bg-brightness, 0.35));
   z-index: -1;
-  will-change: transform;
+  will-change: filter;
+  background-color: var(--bg-color);
 }
+
+
+[data-theme="light"] .page-wrap::before {
+  --bg-brightness: 0.95;
+  filter: blur(20px) grayscale(0.2) opacity(0.15);
+}
+
 
 /* Page hero / banner */
 .page-hero {
   position: relative;
   overflow: hidden;
   padding: 5rem clamp(1.25rem, 3.5vw, 4.5rem) 4rem;
-  background: linear-gradient(135deg, rgba(10, 28, 34, 0.6) 0%, rgba(9, 19, 23, 0.8) 60%, rgba(17, 31, 22, 0.9) 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--hero-overlay);
+  border-bottom: 1px solid var(--bg-shadow);
 }
 
 .page-hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 60% 40%, rgba(239, 181, 0, 0.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 60% 40%, rgba(var(--accent-rgb), 0.08) 0%, transparent 70%);
 }
+
 
 .page-hero__label {
   display: inline-block;
@@ -63,12 +73,13 @@
 }
 
 .page-hero__sub {
-  margin: 0;
   max-width: 42rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-main);
+  opacity: 0.75;
   font-size: clamp(1rem, 1.2vw + 0.5rem, 1.25rem);
   line-height: 1.5;
 }
+
 
 /* Content sections */
 .section {
@@ -76,13 +87,14 @@
 }
 
 .section--alt {
-  background: rgba(255, 255, 255, 0.025);
+  background: var(--card-bg);
+  opacity: 0.95;
 }
 
 .section__label {
   display: inline-block;
   margin-bottom: 0.6rem;
-  color: #efb500;
+  color: var(--accent);
   font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -94,15 +106,17 @@
   font-family: "Bree Serif", serif;
   font-size: clamp(1.8rem, 3vw, 2.8rem);
   line-height: 1.1;
+  color: var(--text-main);
 }
 
 .section__body {
   margin: 0;
   max-width: 52rem;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--copy-color);
   font-size: 1.05rem;
   line-height: 1.65;
 }
+
 
 /* Card grid */
 .card-grid {
@@ -114,8 +128,8 @@
 
 .card {
   position: relative;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: var(--card-bg);
+  border: 1px solid var(--bg-shadow);
   border-radius: 1.25rem;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -123,28 +137,27 @@
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 24px 50px var(--bg-shadow);
 }
 
 .card__img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 220px;
   object-fit: cover;
+  background: var(--bg-shadow);
   display: block;
-  background: #1a2a30;
 }
 
 .card__body {
-  padding: 1.25rem 1.4rem 1.5rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .card__tag {
   display: inline-block;
-  margin-bottom: 0.5rem;
-  padding: 0.2rem 0.65rem;
-  border-radius: 999px;
-  background: rgba(239, 181, 0, 0.12);
-  color: #efb500;
+  color: var(--accent);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -152,34 +165,21 @@
 }
 
 .card__title {
-  margin: 0 0 0.5rem;
+  margin: 0;
   font-family: "Bree Serif", serif;
   font-size: 1.25rem;
-  line-height: 1.2;
+  color: var(--text-main);
 }
 
 .card__text {
   margin: 0;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--copy-color);
   font-size: 0.92rem;
   line-height: 1.6;
 }
 
-.card__fee {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-top: 1rem;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.82rem;
-}
-
-/* Info rows (accordion / expand) */
 .info-row {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid var(--bg-shadow);
 }
 
 .info-row__toggle {
@@ -190,7 +190,7 @@
   padding: 1.2rem 0;
   background: none;
   border: 0;
-  color: #fff;
+  color: var(--text-main);
   font: inherit;
   font-size: 1.05rem;
   font-weight: 500;
@@ -201,7 +201,7 @@
 .info-row__toggle::after {
   content: "+";
   font-size: 1.4rem;
-  color: #efb500;
+  color: var(--accent);
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
@@ -213,7 +213,7 @@
 .info-row__body {
   display: none;
   padding: 0 0 1.2rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--copy-color);
   font-size: 0.95rem;
   line-height: 1.7;
 }
@@ -221,6 +221,7 @@
 .info-row.is-open .info-row__body {
   display: block;
 }
+
 
 /* Gallery grid */
 .gallery-grid {

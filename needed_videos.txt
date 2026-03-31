@@ -1,0 +1,51 @@
+Hey! Here are the exact video files needed for the website.
+Download each video from YouTube, then rename them EXACTLY as shown below and save them into the `videos/` folder (create it inside the project root if it doesn't exist).
+
+RECOMMENDED DOWNLOADER:
+  yt-dlp (free, open-source, best quality)
+  Install: pip install yt-dlp
+  Usage:   yt-dlp -o "FILENAME.mp4" -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]" "URL"
+
+NOTE: All files must be .mp4 format.
+These are used under Fair Use for a non-profit educational project (see Disclaimer.md).
+
+---- REQUIRED VIDEOS ----
+
+1. bohol-cinematic-reel.mp4
+   YouTube: https://www.youtube.com/watch?v=KwuBmgsNac0
+   Title:   "Bohol, Philippines ~ Travel Vlog with Relaxing Music [4K]"
+   Channel: Traveling Faze
+   Length:  6:14
+   Used on: Homepage (index.html) — main featured "Watch Bohol" section
+
+2. chocolate-hills-aerial.mp4
+   YouTube: https://www.youtube.com/watch?v=wsjEAi-0KC8
+   Title:   "Chocolate Hills Philippines | Unreal 4K Drone Views Over Bohol's Natural Wonder"
+   Channel: OnemTravel
+   Length:  1:25
+   Used on: About page (about.html) — after the Chocolate Hills history section
+
+3. loboc-river-cruise-video.mp4
+   YouTube: https://www.youtube.com/watch?v=RI3rkQ1xBLE
+   Title:   "Loboc River Bohol Philippines 4K"
+   Channel: BZ Travel – Unfiltered Journeys
+   Length:  3:30
+   Used on: Local Experiences page (local_experiences.html) — River Cruise section
+
+4. bohol-drone-overview.mp4
+   YouTube: https://www.youtube.com/watch?v=1K53a1Y-oRk
+   Title:   "Aerial view of Chocolate Hills, Bohol, Philippines (4K UHD)"
+   Channel: Amazing Places on Our Planet
+   Length:  5:48
+   Used on: Gallery page (gallery.html) — Videos section at the bottom
+
+---- QUICK DOWNLOAD COMMANDS ----
+
+cd "c:\Users\cmpj\dev\websites\feelbohol\videos"
+
+yt-dlp -o "bohol-cinematic-reel.mp4" -f "bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]" "https://www.youtube.com/watch?v=KwuBmgsNac0"
+yt-dlp -o "chocolate-hills-aerial.mp4" -f "bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]" "https://www.youtube.com/watch?v=wsjEAi-0KC8"
+yt-dlp -o "loboc-river-cruise-video.mp4" -f "bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]" "https://www.youtube.com/watch?v=RI3rkQ1xBLE"
+yt-dlp -o "bohol-drone-overview.mp4" -f "bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]" "https://www.youtube.com/watch?v=mNhhn3GNZY4"
+
+Once all four files are in the `videos/` folder, the website video sections will work automatically.

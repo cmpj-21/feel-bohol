@@ -18,5 +18,9 @@ REQUIRED IMAGES:
 12. virgin-island-bohol.png
 13. sandugo-festival.png
 14. peanut-kisses-bohol.png
+15. sandugo-shrine.png
+16. calamay-bohol.png
+17. sikwate-bohol.png
+18. weaving-bohol.png
 
 Once those are in the `images/` folder, the website gallery and inner pages will automatically display them!
