@@ -86,6 +86,11 @@
   padding: 5rem clamp(1.25rem, 3.5vw, 4.5rem);
 }
 
+.section:not(.immersive-video-section) {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
+}
+
 .section--alt {
   background: var(--card-bg);
   opacity: 0.95;

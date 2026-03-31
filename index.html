@@ -6,6 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="./images/chocolate-hills-aerial.png" fetchpriority="high">
   <link href="./css/main.css" rel="stylesheet">
   <link href="./css/enhancements.css" rel="stylesheet">
   <script src="./js/main.js" defer></script>
@@ -23,7 +24,7 @@
 
     <header class="site-header">
       <a class="brand" href="#" aria-label="Feel Bohol home">
-        <img src="./images/bohol-logo.png" alt="Bohol logo">
+        <img src="./images/bohol-logo.png" alt="Bohol logo" decoding="async" fetchpriority="high">
       </a>
       <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
         <a class="is-active" href="index.html">Home</a>
@@ -78,19 +79,19 @@
         <div class="hero__cards">
           <div class="hero__card-track" id="cardTrack">
             <article class="destination-card is-current">
-              <div class="destination-card__image"><img src="./images/chocolate-hills-aerial.png" alt="Chocolate Hills"></div>
+              <div class="destination-card__image"><img src="./images/chocolate-hills-aerial.png" alt="Chocolate Hills" decoding="async"></div>
               <p class="destination-card__label">Chocolate Hills</p>
             </article>
             <article class="destination-card">
-              <div class="destination-card__image"><img src="./images/manmade-forest-road.png" alt="Bilar Manmade Forest"></div>
+              <div class="destination-card__image"><img src="./images/manmade-forest-road.png" alt="Bilar Manmade Forest" decoding="async"></div>
               <p class="destination-card__label">Bilar Manmade Forest</p>
             </article>
             <article class="destination-card">
-              <div class="destination-card__image"><img src="./images/loboc-river-cruise.png" alt="Loboc River"></div>
+              <div class="destination-card__image"><img src="./images/loboc-river-cruise.png" alt="Loboc River" decoding="async"></div>
               <p class="destination-card__label">Loboc River</p>
             </article>
             <article class="destination-card">
-              <div class="destination-card__image"><img src="./images/tarsier-close-up.png" alt="Philippine Tarsier"></div>
+              <div class="destination-card__image"><img src="./images/tarsier-close-up.png" alt="Philippine Tarsier" decoding="async"></div>
               <p class="destination-card__label">Philippine Tarsier</p>
             </article>
           </div>
@@ -99,14 +100,20 @@
     </section>
   </main>
 
-  <section class="section section--alt" style="text-align: center; padding: clamp(4rem, 8vh, 8rem) clamp(1.25rem, 3.5vw, 4.5rem) clamp(6rem, 12vh, 12rem);">
-    <p class="section__body" style="max-width: 42rem; margin: 0 auto 3.5rem;">
-      Experience the lush landscapes and soul of the island through our 4K cinematic overview. 
-    </p>
-    
-    <div class="video-container" style="max-width: 1100px; margin: 0 auto; box-shadow: 0 30px 90px rgba(0,0,0,0.5);">
-      <video id="bgVideo" autoplay muted loop playsinline poster="./images/chocolate-hills-aerial.png">
-        <source src="./videos/bohol-cinematic-reel.mp4" type="video/mp4">
+  <section class="section section--alt immersive-video-section" aria-label="Bohol cinematic overview">
+    <div class="video-container">
+      <video
+        id="bgVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="none"
+        poster="./images/chocolate-hills-aerial.png"
+        data-start-time="20"
+        data-sources="./videos/bohol-cinematic-reel.mp4, ./videos/bohol-cinematic-reel.f137.mp4"
+      >
+        <source type="video/mp4">
       </video>
     </div>
   </section>
