@@ -103,6 +103,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
   initVideos();
+
+  // --- 6. Weather Service Mock ---
+  const localTemp = document.getElementById('local-temp');
+  const localStatus = document.getElementById('local-status');
+
+  if (localTemp && localStatus) {
+    setTimeout(() => {
+      // Mocking a successful detection
+      localTemp.textContent = '76°F / 24°C';
+      localStatus.innerHTML = 'Sunny <span class="weather-icon">☀️</span>';
+      console.log("Local weather synchronized.");
+    }, 2500);
+  }
 });
 

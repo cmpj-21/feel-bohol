@@ -34,6 +34,8 @@ html,
 body {
   margin: 0;
   min-height: 100%;
+  width: 100%;
+  overflow-x: hidden;
   font-family: "Inter", sans-serif;
   background: var(--bg-color);
   color: var(--text-main);
@@ -138,19 +140,32 @@ button {
   }
 
   .site-nav {
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
     right: 0;
-    bottom: 0;
-    width: min(300px, 80%);
-    background: var(--bg-color);
+    width: 100% !important;
+    max-width: none !important;
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    background: rgba(9, 19, 23, 0.98);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
     flex-direction: column;
-    padding: 6rem 2rem;
-    gap: 1.5rem;
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-    z-index: 1000;
+    padding: 0 2rem;
+    gap: 1.2rem;
+    transform: none;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    z-index: 2000;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .site-nav.is-open {
+    max-height: 90vh;
+    padding: 2rem;
+    overflow-y: auto;
   }
 
   .site-nav.is-open {
@@ -461,9 +476,11 @@ button {
   }
 
   .site-header {
-    flex-direction: column;
-    align-items: flex-start;
-    border-radius: 1rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
   }
 
   .site-nav {
@@ -509,12 +526,22 @@ button {
     width: 11rem;
   }
 
+  .site-header {
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 0;
+    padding: 0.75rem 1.25rem;
+  }
+
   .site-nav {
-    gap: .9rem 1.2rem;
+    width: min(300px, 85%);
+    gap: 1.2rem;
   }
 
   .site-nav a {
-    font-size: 0.88rem;
+    font-size: 1.1rem;
   }
 
   .hero__copy h1 {
@@ -695,4 +722,71 @@ button {
 /* --- Utilities --- */
 .text-accent { color: var(--accent); }
 .is-hidden { display: none !important; }
+
+/* --- Weather Widget --- */
+.weather-widget {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.weather-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.weather-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.weather-temp {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.weather-status {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.weather-divider {
+  width: 1px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 600px) {
+  .weather-card {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+    width: 100%;
+  }
+  .weather-divider {
+    width: 80%;
+    height: 1px;
+  }
+}
 
