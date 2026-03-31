@@ -3,5 +3,8 @@ Thumbs.db
 desktop.ini
 .vscode
 *.pdf
-videos/*.m4a
-videos/bohol-cinematic-reel.f137.mp4
+videos/
+
+# Environment variables (API keys)
+.env
+assistant/.env
