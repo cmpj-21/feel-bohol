@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Plan your Bohol trip — best time to visit, transport options, sample itineraries, and budget guide.">
+  <meta name="description" content="Plan your Bohol trip &mdash; best time to visit, transport options, sample itineraries, and budget guide.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -11,10 +11,11 @@
   <link href="./css/pages.css" rel="stylesheet">
   <link href="./css/enhancements.css" rel="stylesheet">
   <script src="./js/main.js" defer></script>
-  <title>Plan Your Trip – Feel Bohol</title>
+  <script src="./js/trip-planner.js" defer></script>
+  <title>Plan Your Trip &ndash; Feel Bohol</title>
 </head>
 
-<body>
+<body data-page="trip-planner">
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="Feel Bohol home">
       <img src="./images/bohol-logo.png" alt="Bohol logo" decoding="async" fetchpriority="high">
@@ -46,33 +47,32 @@
     </div>
   </header>
 
-
   <div class="page-wrap">
     <div class="page-hero">
       <p class="page-hero__label">Trip Planning</p>
       <h1 class="page-hero__title">Plan Your<br>Bohol Adventure</h1>
-      
-      <!-- Weather Overlay Widget -->
+
       <div class="weather-widget">
         <div class="weather-card">
           <div class="weather-info">
             <span class="weather-label">Bohol Now</span>
-            <div class="weather-temp">88°F / 31°C</div>
-            <div class="weather-status">Partly Sunny <span class="weather-icon">☀️</span></div>
+            <div id="bohol-current-temp" class="weather-temp">Loading...</div>
+            <div id="bohol-current-status" class="weather-status">Checking live forecast...</div>
+            <p id="bohol-current-note" class="weather-note">Live conditions for central Bohol.</p>
           </div>
           <div class="weather-divider"></div>
           <div class="weather-info">
             <span class="weather-label">Your Location</span>
-            <div id="local-temp" class="weather-temp">--°F</div>
-            <div id="local-status" class="weather-status">Detecting... <span class="weather-icon">📍</span></div>
+            <div id="local-temp" class="weather-temp">--C</div>
+            <div id="local-status" class="weather-status">Waiting for location access...</div>
+            <p id="local-note" class="weather-note">Allow location access to compare conditions.</p>
           </div>
         </div>
       </div>
 
-      <p class="page-hero__sub">Everything you need to know before you go — when to visit, how to get around, and how to spend 3 to 7 days in paradise.</p>
+      <p class="page-hero__sub">Everything you need to know before you go &mdash; when to visit, how to get around, and how to spend 2 to 7 days in paradise.</p>
     </div>
 
-    <!-- Best time -->
     <section class="section">
       <span class="section__label">When to Visit</span>
       <h2 class="section__title">Best Season</h2>
@@ -80,68 +80,148 @@
         <div class="card">
           <div class="card__body">
             <span class="card__tag">Peak Season</span>
-            <h3 class="card__title">December – May</h3>
-            <p class="card__text">The dry season. Sunny skies, calm seas, ideal beach and diving conditions. January to May is when the Chocolate Hills turn their signature chocolate-brown. Book accommodation early — this fills fast.</p>
+            <h3 class="card__title">December &ndash; May</h3>
+            <p class="card__text">The dry season brings sunny skies, calmer seas, and ideal beach and diving conditions. January to May is when the Chocolate Hills turn their signature chocolate brown, so book early if those months are your priority.</p>
           </div>
         </div>
         <div class="card">
           <div class="card__body">
             <span class="card__tag">Value Season</span>
-            <h3 class="card__title">June – November</h3>
-            <p class="card__text">The rainy season brings lush, emerald-green Chocolate Hills and fewer crowds. Accommodation rates drop significantly. Outdoor activities are still possible between rain showers. Typhoon watch advised Aug–Oct.</p>
+            <h3 class="card__title">June &ndash; November</h3>
+            <p class="card__text">The wetter season turns the hills lush green and thins out the crowds. Outdoor days are still very possible between showers, but August to October usually need the most weather flexibility.</p>
           </div>
         </div>
         <div class="card">
           <div class="card__body">
             <span class="card__tag">Festivals</span>
-            <h3 class="card__title">July — Sandugo Festival</h3>
-            <p class="card__text">If you can make it in July, the month-long Sandugo Festival fills Tagbilaran with street dancing, reenactments, and pageants. Book months in advance as hotels fill up region-wide.</p>
+            <h3 class="card__title">July &mdash; Sandugo Festival</h3>
+            <p class="card__text">If you travel in July, Tagbilaran becomes far livelier with the Sandugo Festival. Expect heavier demand for stays and transport, but also the strongest cultural atmosphere on the island.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Sample itinerary -->
-    <section class="section section--alt">
-      <span class="section__label">Itinerary</span>
-      <h2 class="section__title">Sample 3-Day Countryside + Beach Route</h2>
-      <div style="max-width:52rem; margin-top:1.5rem;">
-        <div class="info-row">
-          <button class="info-row__toggle">Day 1 — Arrival &amp; Tagbilaran</button>
-          <div class="info-row__body">
-            Arrive at Tagbilaran Airport or Port. Check into your hotel. Afternoon: visit <strong>Baclayon Church</strong> and the nearby Blood Compact Shrine. Evening: explore Tagbilaran's downtown — try local calamay, broas, and peanut kisses from the market.
+    <section class="section section--alt trip-planner-tool" id="trip-planner-tool">
+      <span class="section__label">Smart Planner</span>
+      <h2 class="section__title">Build a Weather-Aware Bohol Itinerary</h2>
+      <p class="section__body">Choose your dates, travel style, and priorities. The planner uses live Bohol forecast data plus a curated island activity dataset to build a route that matches your pace and transport. Weather is live; route timing, opening hours, and costs remain planning estimates.</p>
+
+      <div class="trip-planner-layout">
+        <form id="trip-planner-form" class="trip-planner-form" novalidate>
+          <div class="trip-planner-fields">
+            <div class="form-group">
+              <label for="planner-start-date">Start Date</label>
+              <input id="planner-start-date" name="start-date" type="date" required>
+            </div>
+            <div class="form-group">
+              <label for="planner-days">Trip Length</label>
+              <select id="planner-days" name="days">
+                <option value="2">2 days</option>
+                <option value="3" selected>3 days</option>
+                <option value="4">4 days</option>
+                <option value="5">5 days</option>
+                <option value="6">6 days</option>
+                <option value="7">7 days</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="planner-style">Travel Style</label>
+              <select id="planner-style" name="style">
+                <option value="budget">Budget</option>
+                <option value="standard" selected>Standard</option>
+                <option value="luxury">Luxury</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="planner-base">Base Area</label>
+              <select id="planner-base" name="base">
+                <option value="flexible">Flexible / Move Around</option>
+                <option value="panglao" selected>Panglao</option>
+                <option value="tagbilaran">Tagbilaran</option>
+                <option value="anda">Anda</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="planner-transport">Transport</label>
+              <select id="planner-transport" name="transport">
+                <option value="shared_tour">Shared Tours + Tricycles</option>
+                <option value="scooter" selected>Scooter</option>
+                <option value="private_van">Private Van + Driver</option>
+                <option value="private_car">Private Car</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="planner-pace">Pace</label>
+              <select id="planner-pace" name="pace">
+                <option value="relaxed">Relaxed</option>
+                <option value="balanced" selected>Balanced</option>
+                <option value="packed">Packed</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="info-row">
-          <button class="info-row__toggle">Day 2 — Countryside Loop (Full Day)</button>
-          <div class="info-row__body">
-            <strong>Morning:</strong> Drive the Bilar Manmade Forest. Stop at Corella for the <strong>Tarsier Sanctuary</strong>.<br><br>
-            <strong>Midday:</strong> <strong>Loboc River Cruise</strong> — two hours of floating buffet and cultural shows on the emerald river.<br><br>
-            <strong>Afternoon:</strong> Head to Carmen for the <strong>Chocolate Hills</strong> viewpoint (sunrise/sunset views are best). Return via Batuan.<br><br>
-            <em>Tip: Hire a van with driver (₱4,000–4,500) to cover this loop in one day comfortably.</em>
+
+          <fieldset class="trip-planner-interests">
+            <legend>Interests</legend>
+            <div class="trip-planner-interest-grid">
+              <label class="trip-planner-check"><input type="checkbox" name="interest" value="nature" checked> <span>Nature</span></label>
+              <label class="trip-planner-check"><input type="checkbox" name="interest" value="beaches" checked> <span>Beaches</span></label>
+              <label class="trip-planner-check"><input type="checkbox" name="interest" value="wildlife" checked> <span>Wildlife</span></label>
+              <label class="trip-planner-check"><input type="checkbox" name="interest" value="culture" checked> <span>Culture</span></label>
+              <label class="trip-planner-check"><input type="checkbox" name="interest" value="food"> <span>Food</span></label>
+              <label class="trip-planner-check"><input type="checkbox" name="interest" value="adventure"> <span>Adventure</span></label>
+            </div>
+          </fieldset>
+
+          <div class="trip-planner-actions">
+            <button id="planner-generate-button" class="btn-submit" type="submit">Generate My Trip</button>
+            <p id="planner-live-note" class="trip-planner-note">Live daily forecast is available for trips starting within 16 days. Beyond that, the planner falls back to seasonal guidance, while route timing and place details remain planning estimates.</p>
           </div>
-        </div>
-        <div class="info-row">
-          <button class="info-row__toggle">Day 3 — Panglao Island</button>
-          <div class="info-row__body">
-            <strong>Morning:</strong> Island-hop to <strong>Balicasag Island</strong> for world-class snorkelling and sea turtle encounters.<br><br>
-            <strong>Afternoon:</strong> Return to <strong>Alona Beach</strong> — lunch, rest, or a second dive. Explore <strong>Hinagdanan Cave</strong> in the late afternoon.<br><br>
-            <strong>Evening:</strong> Sunset beers on Alona Beach. Dinner at one of the beachside restaurants.
+        </form>
+
+        <aside class="trip-planner-overview">
+          <p class="trip-planner-overview__eyebrow">Trip Snapshot</p>
+          <div class="trip-planner-kpis">
+            <div class="trip-planner-kpi">
+              <span class="trip-planner-kpi__label">Forecast Window</span>
+              <strong id="planner-kpi-forecast">Loading...</strong>
+              <p id="planner-kpi-forecast-sub">Preparing weather-aware routing.</p>
+            </div>
+            <div class="trip-planner-kpi">
+              <span class="trip-planner-kpi__label">Best Fit</span>
+              <strong id="planner-kpi-focus">Balanced island sampler</strong>
+              <p id="planner-kpi-focus-sub">Generated from your interests and pace.</p>
+            </div>
+            <div class="trip-planner-kpi">
+              <span class="trip-planner-kpi__label">Estimated Total</span>
+              <strong id="planner-kpi-budget">&#8369;0</strong>
+              <p id="planner-kpi-budget-sub">Includes stay, meals, transport, and activity spend.</p>
+            </div>
           </div>
-        </div>
-        <div class="info-row">
-          <button class="info-row__toggle">Extended: Days 4–7</button>
-          <div class="info-row__body">
-            <strong>Day 4:</strong> Abatan River firefly watching night tour.<br><br>
-            <strong>Day 5:</strong> East Bohol — Cadapdapan Rice Terraces and Can-umantad Falls (Bohol's tallest waterfall).<br><br>
-            <strong>Day 6:</strong> Binabaje Hills hike (Alicia) — stunning ridgeline views.<br><br>
-            <strong>Day 7:</strong> Lamanoc Island cave art (Anda) + Anda beach relaxation.
+          <div id="planner-summary-text" class="trip-planner-summary-text">Select your trip details and the planner will build a realistic route for Bohol.</div>
+        </aside>
+      </div>
+
+      <div id="planner-alerts" class="trip-planner-alerts" aria-live="polite"></div>
+
+      <div class="trip-planner-results">
+        <div class="trip-planner-panel">
+          <div class="trip-planner-panel__head">
+            <span class="section__label">Generated Route</span>
+            <h3 class="trip-planner-panel__title">Day-by-Day Plan</h3>
           </div>
+          <div id="planner-days-output" class="trip-planner-days-output"></div>
         </div>
+
+        <aside class="trip-planner-panel trip-planner-panel--budget">
+          <div class="trip-planner-panel__head">
+            <span class="section__label">Estimated Spend</span>
+            <h3 class="trip-planner-panel__title">Budget Breakdown</h3>
+          </div>
+          <div id="planner-budget-output" class="trip-planner-budget-output"></div>
+        </aside>
       </div>
     </section>
 
-    <!-- Budget guide -->
     <section class="section">
       <span class="section__label">Budget</span>
       <h2 class="section__title">Estimated Daily Costs (2026)</h2>
@@ -154,19 +234,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Accommodation</td><td>₱500 – ₱5,000+</td><td>Hostel dorm to mid-range resort</td></tr>
-          <tr><td>Van + Driver (countryside)</td><td>₱4,000 – ₱4,500</td><td>Per 8-hour tour, split with group</td></tr>
-          <tr><td>Scooter rental</td><td>₱400 – ₱600</td><td>Per day, Panglao island</td></tr>
-          <tr><td>Loboc River Cruise</td><td>₱850 – ₱1,000</td><td>Buffet included</td></tr>
-          <tr><td>Balicasag boat trip</td><td>₱800 – ₱1,200</td><td>Incl. env. fee, snorkel gear</td></tr>
-          <tr><td>Chocolate Hills entrance</td><td>₱100 – ₱150</td><td>Per person at Carmen viewpoint</td></tr>
-          <tr><td>Tarsier Sanctuary</td><td>₱150 – ₱170</td><td>Per person</td></tr>
-          <tr><td>Meals</td><td>₱150 – ₱600</td><td>Carinderia to sit-down restaurant</td></tr>
+          <tr><td>Accommodation</td><td>&#8369;500 - &#8369;5,000+</td><td>Hostel dorm to mid-range resort</td></tr>
+          <tr><td>Van + Driver (countryside)</td><td>&#8369;4,000 - &#8369;4,500</td><td>Per 8-hour tour, split with group</td></tr>
+          <tr><td>Scooter Rental</td><td>&#8369;400 - &#8369;600</td><td>Per day, Panglao island</td></tr>
+          <tr><td>Loboc River Cruise</td><td>&#8369;850 - &#8369;1,000</td><td>Buffet included</td></tr>
+          <tr><td>Balicasag Boat Trip</td><td>&#8369;800 - &#8369;1,200</td><td>Includes env. fee and snorkel gear</td></tr>
+          <tr><td>Chocolate Hills Entrance</td><td>&#8369;100 - &#8369;150</td><td>Per person at Carmen viewpoint</td></tr>
+          <tr><td>Tarsier Sanctuary</td><td>&#8369;150 - &#8369;170</td><td>Per person</td></tr>
+          <tr><td>Meals</td><td>&#8369;150 - &#8369;600</td><td>Carinderia to sit-down restaurant</td></tr>
         </tbody>
       </table>
     </section>
 
-    <!-- Packing tips -->
     <section class="section section--alt">
       <span class="section__label">What to Bring</span>
       <h2 class="section__title">Packing Tips</h2>
@@ -175,47 +254,22 @@
           <div class="card__body">
             <span class="card__tag">Essential</span>
             <h3 class="card__title">Sun &amp; Sea</h3>
-            <p class="card__text">Reef-safe sunscreen (required at some marine sanctuaries), rash guard, underwater camera, snorkel gear (or rent on-site), and a dry bag for boat trips.</p>
+            <p class="card__text">Bring reef-safe sunscreen, a rash guard, sandals that can get wet, and a dry bag for island-hopping days. If snorkeling is high on your list, it is still worth packing your own mask for a better fit.</p>
           </div>
         </div>
         <div class="card">
           <div class="card__body">
             <span class="card__tag">Practical</span>
             <h3 class="card__title">Cash First</h3>
-            <p class="card__text">Many smaller establishments outside Tagbilaran and Panglao are cash-only. Withdraw at Tagbilaran ATMs on arrival — GCash is increasingly accepted in tourist areas.</p>
+            <p class="card__text">Many smaller establishments outside Tagbilaran and Panglao still lean cash-first. Withdraw on arrival and keep smaller bills for tricycles, food stalls, environmental fees, and local guides.</p>
           </div>
         </div>
         <div class="card">
           <div class="card__body">
             <span class="card__tag">Respect</span>
             <h3 class="card__title">Wildlife Etiquette</h3>
-            <p class="card__text">No touching tarsiers. No flash photography. Keep voices low at the sanctuary. At coral reefs, no touching or standing on coral. These rules protect what makes Bohol special.</p>
+            <p class="card__text">No touching tarsiers, no flash photography, and no standing on coral. The island experience is better when visitors protect the fragile wildlife and reef systems that make Bohol special.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <span class="section__label">Budgeting</span>
-      <h2 class="section__title">Trip Budget Calculator</h2>
-      <p class="section__body">Estimate your daily expenses in Bohol based on your travel style.</p>
-      
-      <div id="budget-calculator" class="calculator-container" style="margin-top: 2.5rem; background: var(--card-bg); padding: 2rem; border-radius: var(--card-radius); display: grid; gap: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-        <div class="calc-input">
-          <label style="display:block; margin-bottom:0.5rem;">Travel Style</label>
-          <select id="travel-style" style="width:100%; padding:0.8rem; border-radius:0.5rem; background:rgba(255,255,255,0.1); color:inherit; border:1px solid rgba(255,255,255,0.2);">
-            <option value="50">Budget (₱2,500 / day)</option>
-            <option value="150" selected>Standard (₱7,500 / day)</option>
-            <option value="400">Luxury (₱20,000 / day)</option>
-          </select>
-        </div>
-        <div class="calc-input">
-          <label style="display:block; margin-bottom:0.5rem;">Number of Days</label>
-          <input type="number" id="trip-days" value="3" min="1" style="width:100%; padding:0.8rem; border-radius:0.5rem; background:rgba(255,255,255,0.1); color:inherit; border:1px solid rgba(255,255,255,0.2);">
-        </div>
-        <div class="calc-result" style="text-align:center; padding-top:1rem; border-top:1px solid rgba(255,255,255,0.1);">
-          <span style="font-size:0.9rem; opacity:0.7;">Estimated Total</span>
-          <div id="total-budget" style="font-size:2.5rem; font-weight:700; color:var(--accent);">₱22,500</div>
         </div>
       </div>
     </section>
@@ -256,28 +310,5 @@
   <button id="back-to-top" class="back-to-top" aria-label="Back to top">
     <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
   </button>
-
-  <script>
-    // Simple Calculator Logic
-    const styleSelect = document.getElementById('travel-style');
-    const daysInput = document.getElementById('trip-days');
-    const totalDisplay = document.getElementById('total-budget');
-
-    function calculate() {
-      const perDay = parseInt(styleSelect.value) * 50; // multiplier to get PHP
-      const days = parseInt(daysInput.value) || 0;
-      const total = perDay * days;
-      totalDisplay.textContent = '₱' + total.toLocaleString();
-    }
-
-    styleSelect.addEventListener('change', calculate);
-    daysInput.addEventListener('input', calculate);
-
-    document.querySelectorAll('.info-row__toggle').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        btn.closest('.info-row').classList.toggle('is-open');
-      });
-    });
-  </script>
 </body>
 </html>

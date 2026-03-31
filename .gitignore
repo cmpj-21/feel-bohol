@@ -3,4 +3,5 @@ Thumbs.db
 desktop.ini
 .vscode
 *.pdf
-videos/
+videos/*.m4a
+videos/bohol-cinematic-reel.f137.mp4
