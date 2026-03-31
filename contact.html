@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="./images/bohol-logo.png">
   <meta name="description" content="Get in touch with the Feel Bohol team — enquiries, partnerships, and travel help.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -173,7 +174,6 @@
       const serverWarning = document.getElementById('cf-server-warning');
       const submitButton = form ? form.querySelector('button[type="submit"]') : null;
       const defaultSuccessText = successMessage ? successMessage.textContent : '';
-
       if (form && submitButton && successMessage && serverWarning) {
         form.addEventListener('submit', async function (event) {
           event.preventDefault();
