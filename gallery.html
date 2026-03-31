@@ -156,9 +156,7 @@
       </div>
     </section>
 
-    <section class="section">
-      <span class="section__label">Drone Views</span>
-      <h2 class="section__title">Bohol from Above</h2>
+    <section class="section immersive-video-section immersive-video-section--with-copy" aria-label="Bohol from Above">
       <div class="video-container" style="pointer-events: none;">
         <video
           autoplay
@@ -171,6 +169,11 @@
         >
           <source type="video/mp4">
         </video>
+      </div>
+
+      <div class="immersive-video-copy">
+        <span class="section__label">Drone Views</span>
+        <h2 class="section__title">Bohol from Above</h2>
       </div>
     </section>
   </div>
@@ -210,5 +213,17 @@
   <button id="back-to-top" class="back-to-top" aria-label="Back to top">
     <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
   </button>
+
+  <!-- Premium Gallery Lightbox -->
+  <div id="gallery-lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox__overlay"></div>
+    <div class="lightbox__content">
+      <div class="lightbox__img-wrap">
+        <img id="lightbox-img" class="lightbox__img" src="" alt="">
+        <button class="lightbox__close" aria-label="Close Gallery">&times;</button>
+      </div>
+      <div id="lightbox-caption" class="lightbox__caption"></div>
+    </div>
+  </div>
 </body>
 </html>

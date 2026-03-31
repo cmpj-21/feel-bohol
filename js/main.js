@@ -494,4 +494,57 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log("Local weather synchronized.");
     }, 2500);
   }
+
+  // --- 8. Gallery Lightbox Logic ---
+  const lightbox = document.getElementById('gallery-lightbox');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxClose = document.querySelector('.lightbox__close');
+  const lightboxOverlay = document.querySelector('.lightbox__overlay');
+
+  if (lightbox && galleryItems.length > 0) {
+    const openLightbox = (item) => {
+      const img = item.querySelector('img');
+      const caption = item.querySelector('.gallery-item__caption');
+      
+      if (!img) return;
+
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt || "Bohol Gallery Image";
+      lightboxCaption.textContent = caption ? caption.textContent : "";
+      
+      lightbox.classList.add('is-visible');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden'; // Lock scroll
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('is-visible');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = ''; // Restore scroll
+      
+      // Delay cleaning src to avoid flash during transition
+      setTimeout(() => {
+        if (!lightbox.classList.contains('is-visible')) {
+          lightboxImg.src = "";
+        }
+      }, 400);
+    };
+
+    galleryItems.forEach(item => {
+      item.style.cursor = 'zoom-in';
+      item.addEventListener('click', () => openLightbox(item));
+    });
+
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if (lightboxOverlay) lightboxOverlay.addEventListener('click', closeLightbox);
+
+    // Escape to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-visible')) {
+        closeLightbox();
+      }
+    });
+  }
 });

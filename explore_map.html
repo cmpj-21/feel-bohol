@@ -64,12 +64,7 @@
       <h2 class="section__title">Bohol, Philippines</h2>
       <p class="section__body">Zoom in to explore beaches, mountains, caves, and heritage sites across the island.</p>
       <div class="map-wrap">
-        <iframe
-          title="Map of Bohol, Philippines"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=123.6,9.4,124.6,10.2&layer=mapnik&marker=9.8,124.05"
-          allowfullscreen
-          loading="lazy">
-        </iframe>
+        <div id="map" style="width: 100%; height: 500px; border-radius: 1rem; box-shadow: 0 40px 80px rgba(0,0,0,0.3); z-index: 1;"></div>
       </div>
     </section>
 
@@ -78,42 +73,42 @@
       <span class="section__label">Zones</span>
       <h2 class="section__title">Key Areas of Bohol</h2>
       <div class="card-grid">
-        <div class="card">
+        <div class="card" style="cursor: pointer;" onclick="moveToLocation(9.6412, 123.8572, 14, 'Tagbilaran City')">
           <div class="card__body">
             <span class="card__tag">City</span>
             <h3 class="card__title">Tagbilaran City</h3>
             <p class="card__text">The capital and main entry point. Home to Baclayon Church, the Sandugo Monument, the airport, ferry terminals, and most hotels. Start your island journey here.</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card" style="cursor: pointer;" onclick="moveToLocation(9.5500, 123.7700, 13, 'Panglao Island')">
           <div class="card__body">
             <span class="card__tag">Island</span>
             <h3 class="card__title">Panglao Island</h3>
             <p class="card__text">Connected to the mainland by bridges, Panglao is Bohol's beach capital. Alona Beach, Dumaluan Beach, Hinagdanan Cave, and Balicasag Island boat trips are all based here.</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card" style="cursor: pointer;" onclick="moveToLocation(9.8300, 124.1700, 13, 'Chocolate Hills Viewpoint')">
           <div class="card__body">
             <span class="card__tag">Interior</span>
             <h3 class="card__title">Carmen / Batuan / Sagbayan</h3>
             <p class="card__text">The heart of Bohol's countryside. The Chocolate Hills viewpoint in Carmen is the most popular, but Sagbayan Peak offers a quieter, equally stunning vantage point.</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card" style="cursor: pointer;" onclick="moveToLocation(9.6700, 123.9800, 14, 'Loboc & Corella')">
           <div class="card__body">
             <span class="card__tag">River Town</span>
             <h3 class="card__title">Loboc &amp; Corella</h3>
             <p class="card__text">The Loboc River cruise departs from Loboc town. Nearby Corella is home to the Philippine Tarsier Sanctuary. The two stops are natural companions on the countryside loop.</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card" style="cursor: pointer;" onclick="moveToLocation(9.7800, 124.5500, 13, 'Anda & Candijay')">
           <div class="card__body">
             <span class="card__tag">Hidden Gem</span>
             <h3 class="card__title">Candijay &amp; Anda</h3>
             <p class="card__text">The east coast offers Bohol's best-kept secrets: Cadapdapan Rice Terraces, Can-umantad Falls (Bohol's tallest), Lamanoc Island's cave art, and pristine Anda Beach.</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card" style="cursor: pointer;" onclick="moveToLocation(9.7214, 123.8681, 14, 'Abatan River Fireflies')">
           <div class="card__body">
             <span class="card__tag">Night Tour</span>
             <h3 class="card__title">Abatan River</h3>
@@ -188,6 +183,40 @@
   </button>
 
   <script>
+    // Map initialisation - Leaflet.js
+    const boholCoords = [9.8, 124.05];
+    const map = L.map('map').setView(boholCoords, 10);
+    let currentMarker;
+
+    // Professional Map Layer - Esri World Street Map (Stable for local development)
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 19,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    }).addTo(map);
+
+    // Initial marker
+    currentMarker = L.marker(boholCoords).addTo(map)
+      .bindPopup('Exploring Bohol')
+      .openPopup();
+
+    function moveToLocation(lat, lng, zoom, title) {
+      // Smooth Pan/Fly transition
+      map.flyTo([lat, lng], zoom, {
+        duration: 1.5,
+        easeLinearity: 0.25
+      });
+
+      // Update marker
+      if (currentMarker) map.removeLayer(currentMarker);
+      currentMarker = L.marker([lat, lng]).addTo(map)
+        .bindPopup(`Exploring: <strong>${title}</strong>`)
+        .openPopup();
+
+      // Scroll to map for better visibility
+      document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Toggle logic for info rows
     document.querySelectorAll('.info-row__toggle').forEach(function (btn) {
       btn.addEventListener('click', function () {
         btn.closest('.info-row').classList.toggle('is-open');
